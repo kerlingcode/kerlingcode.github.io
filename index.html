@@ -2,22 +2,38 @@
 layout: default
 ---
 
-{% include intro.html %}
+<!-- Brief intro -->
+<div class="header-intro">
+  <h2>fffabs</h2>
+  <p><a href="http://brotherhood.io/">I am a designer &amp; developer. &rarr;</a> <br />This is my blog. No promises on frequency.
+  <br />Let's keep things casual.</p>
+</div>
+<hr />
+<!-- End intro -->
 
-<section class="post-list">
-    <div class="container">
-        {% for post in paginator.posts %}
-            <div class="post-preview">
-                <span class="post-title alignable pull-left">
-                    <a class="post-link underline" href="{{ post.url | prepend: site.baseurl }}">
-                        {{ post.title }}
-                    </a>
-                </span>
-                <span class="post-time alignable pull-right">
-                    <time>{{ post.date | date: '%B %d, %Y '}}</time>
-                </span>
-                <div style="clear:both"></div>
-            </div>
-        {% endfor %}
-    </div>
-</section>
+<div class="home">
+
+  <ul id="post-list">
+    {% for post in paginator.posts %}
+      <li>
+        <a href="{{ post.url | prepend: site.baseurl }}">
+        <aside class="dates">{{ post.date | date: "%b %-d" }}</aside>
+        </a>
+        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }} <h2>{{ post.description }}</h2></a>
+        <!-- <p>
+        {{ post.content | truncatewords: 50 }}
+        </p> -->
+      </li>
+    {% endfor %}
+  </ul>
+
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a class="pagination-link" href="{{ paginator.previous_page_path }}" class="previous"><span class="arrow">&larr;</span> Previous</a>
+    {% endif %}
+    {% if paginator.next_page %}
+      <a class="pagination-link" href="{{ paginator.next_page_path }}" class="next">Next <span class="arrow">&rarr;</span></a>
+    {% endif %}
+  </div>
+
+</div>
